@@ -95,7 +95,7 @@ public class TasksTest {
     }
 
     @Test
-    public void deveSalvarTarefaComDataPassada() throws MalformedURLException {
+    public void naoDeveSalvarTarefaComDataPassada() throws MalformedURLException {
         WebDriver driver = acessarAplicacao();
         try {
             //clicar em add todo
@@ -113,6 +113,29 @@ public class TasksTest {
             //validar mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Due date must not be in past", message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //fechar o navegador
+        driver.quit();
+    }
+
+    @Test
+    public void deveRemoverTarefaComSucesso() throws MalformedURLException {
+        WebDriver driver = acessarAplicacao();
+        try {
+            //inserir tarefa
+            driver.findElement(By.id("addTodo")).click();
+            driver.findElement(By.id("task")).sendKeys("Teste via Selenium");
+            driver.findElement(By.id("dueDate")).sendKeys("11/12/2030");
+            driver.findElement(By.id("saveButton")).click();
+            String message = driver.findElement(By.id("message")).getText();
+            Assert.assertEquals("Success!", message);
+
+            //remover a Tarefa
+            driver.findElement(By.xpath("//a[@class='btn btn-outline-danger btn-sm']")).click();
+            message = driver.findElement(By.id("message")).getText();
+            Assert.assertEquals("Success!", message);
         } catch (Exception e) {
             e.printStackTrace();
         }
