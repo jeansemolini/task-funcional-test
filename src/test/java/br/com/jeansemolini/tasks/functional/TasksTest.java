@@ -64,11 +64,10 @@ public class TasksTest {
             //validar mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Fill the task description", message);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } finally {
+            //fechar o navegador
+            driver.quit();
         }
-        //fechar o navegador
-        driver.quit();
     }
 
     @Test
@@ -87,11 +86,10 @@ public class TasksTest {
             //validar mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Fill the due date", message);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } finally {
+            //fechar o navegador
+            driver.quit();
         }
-        //fechar o navegador
-        driver.quit();
     }
 
     @Test
@@ -113,11 +111,10 @@ public class TasksTest {
             //validar mensagem de sucesso
             String message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Due date must not be in past", message);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } finally {
+            //fechar o navegador
+            driver.quit();
         }
-        //fechar o navegador
-        driver.quit();
     }
 
     @Test
@@ -136,10 +133,10 @@ public class TasksTest {
             driver.findElement(By.xpath("//a[@class='btn btn-outline-danger btn-sm']")).click();
             message = driver.findElement(By.id("message")).getText();
             Assert.assertEquals("Success!", message);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } finally {
+            //fechar o navegador
+            driver.quit();
         }
-        //fechar o navegador
-        driver.quit();
+
     }
 }
